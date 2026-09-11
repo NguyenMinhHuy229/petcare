@@ -1,6 +1,6 @@
 # PawCare ERD
 
-ERD này chỉ mô tả phần prototype đã chốt: hồ sơ thú cưng, dịch vụ, đặt lịch, theo dõi trạng thái, thanh toán và hóa đơn.
+This ERD covers the approved prototype scope: pet profiles, services, bookings, status tracking, payments and invoices.
 
 ```mermaid
 erDiagram
@@ -89,12 +89,12 @@ erDiagram
 
 ## Booking status
 
-`bookings.status` phục vụ màn hình theo dõi lịch hẹn:
+`bookings.status` supports the appointment tracking screen:
 
-- `pending`: Chờ xác nhận
-- `confirmed`: Đã xác nhận
-- `in_progress`: Đang chăm sóc
-- `completed`: Hoàn thành
-- `cancelled`: Đã hủy
+- `pending`: Awaiting confirmation
+- `confirmed`: Confirmed
+- `in_progress`: In progress
+- `completed`: Completed
+- `cancelled`: Cancelled
 
-Database runtime và backend API chưa nằm trong prototype hiện tại.
+Runtime database and backend API are not included in the current prototype.

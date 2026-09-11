@@ -46,9 +46,9 @@ foreach ($section in @('Scope', 'User flow', 'Database', 'Run locally')) {
 
 foreach ($screen in @('pages/services.html', 'pages/booking.html', 'pages/payments.html', 'pages/appointments.html')) {
   $html = Get-Content -Raw -Encoding utf8 $screen
-  Assert-NotContains $html 'Trông giữ thú cưng' "$screen should not expose out-of-scope boarding service"
-  Assert-NotContains $html 'Báo cáo hình ảnh trực tiếp' "$screen should not expose live photo reports"
-  Assert-NotContains $html 'VAT doanh nghiệp' "$screen should not expose business VAT workflow"
+  Assert-NotContains $html 'Pet boarding' "$screen should not expose out-of-scope boarding service"
+  Assert-NotContains $html 'Live photo reports' "$screen should not expose live photo reports"
+  Assert-NotContains $html 'Business VAT' "$screen should not expose business VAT workflow"
 }
 
 Write-Output 'PASS: project scope, schema, ERD and README checks passed.'

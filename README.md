@@ -1,77 +1,77 @@
 # PawCare Pet Care Prototype
 
-Prototype giao diện cho hệ thống quản lý dịch vụ chăm sóc thú cưng PawCare. Giao diện được chuẩn hóa từ Google Stitch export và chạy dưới dạng static HTML.
+UI prototype for the PawCare pet care service management system. The interface was standardized from a Google Stitch export and runs as static HTML.
 
 ## Scope
 
 ### User flow
 
-Prototype tập trung vào một user flow xuyên suốt:
+The prototype focuses on one end-to-end user flow:
 
 ```text
-Quản lý thú cưng → Xem dịch vụ → Tạo lịch hẹn → Theo dõi lịch hẹn → Thanh toán & hóa đơn
+Manage pets → Browse services → Create booking → Track appointment → Payment & invoice
 ```
 
-Các màn hình chính:
+Main screens:
 
-- `pages/pets.html`: xem, thêm, xem chi tiết và chỉnh sửa hồ sơ thú cưng.
-- `pages/services.html`: xem danh sách, chi tiết, giá và thời gian dịch vụ.
-- `pages/booking.html`: chọn thú cưng, dịch vụ, nhân viên, ngày giờ và ghi chú.
-- `pages/appointments.html`: theo dõi thông tin và trạng thái lịch hẹn.
-- `pages/payments.html`: xem chi phí, chọn phương thức thanh toán và xem hóa đơn.
+- `pages/pets.html`: browse, add, view and edit pet profiles.
+- `pages/services.html`: browse services, details, prices and durations.
+- `pages/booking.html`: choose a pet, service, staff member, date, time and note.
+- `pages/appointments.html`: track appointment details and status.
+- `pages/payments.html`: review costs, choose a payment method and view invoices.
 
-## Ngoài scope
+## Out of scope
 
-Prototype chưa triển khai backend, authentication, payment gateway thật, realtime tracking, quản lý khách hàng chuyên sâu, quản lý nhân viên, chi nhánh, khuyến mãi, hồ sơ y tế, tiêm chủng, live chat, GPS hoặc analytics.
+The prototype does not include a backend, authentication, real payment gateway, realtime tracking, advanced customer or staff management, branches, promotions, medical records, vaccination, live chat, GPS or analytics.
 
 ## Run locally
 
-Từ thư mục gốc project:
+From the project root:
 
 ```powershell
 python -m http.server 8000
 ```
 
-Mở màn hình bắt đầu:
+Open the starting screen:
 
 ```text
 http://localhost:8000/pages/pets.html
 ```
 
-Không nên mở trực tiếp bằng `file://` vì prototype sử dụng các đường dẫn tương đối giữa nhiều trang HTML.
+Do not open the files directly with `file://`; the prototype uses relative links between multiple HTML pages.
 
-## Cấu trúc thư mục
+## Directory structure
 
 ```text
-pages/       Các màn hình HTML
-scripts/     Navigation và script kiểm tra
-assets/      Logo, ảnh và screenshot tham chiếu
-docs/        Design system, XMind và ERD Mermaid
-database/    Database schema SQL
+pages/       HTML screens
+scripts/     Navigation and verification scripts
+assets/      Logo, images and reference screenshots
+docs/        Design system, XMind and Mermaid ERD
+database/    SQL database schema
 ```
 
 ## Database
 
-Schema nằm tại [`database/schema.sql`](database/schema.sql). ERD Mermaid nằm tại [`docs/ERD.md`](docs/ERD.md).
+The schema is in [`database/schema.sql`](database/schema.sql). The Mermaid ERD is in [`docs/ERD.md`](docs/ERD.md).
 
-Entity chính:
+Main entities:
 
 ```text
 Customer, Pet, Service, Staff, Booking,
 BookingService, Payment, Invoice
 ```
 
-`Booking.status` dùng để mô phỏng trạng thái lịch hẹn, không cần một hệ thống realtime riêng.
+`Booking.status` models the appointment status; a separate realtime system is not required for this prototype.
 
-## Kiểm tra
+## Verification
 
-Kiểm tra navigation:
+Verify navigation:
 
 ```powershell
 powershell -NoProfile -File .\scripts\verify-navigation.ps1
 ```
 
-Kiểm tra scope, schema, ERD và README:
+Verify scope, schema, ERD and README:
 
 ```powershell
 powershell -NoProfile -File .\scripts\verify-project.ps1

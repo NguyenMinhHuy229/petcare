@@ -11,11 +11,11 @@
 
   document.querySelectorAll('[data-path]').forEach((link) => {
     const pathMap = {
-      'thu-cung-cua-toi': 'pets',
-      'dich-vu': 'services',
-      'dat-lich': 'booking',
-      'lich-hen-cua-toi': 'appointments',
-      'thanh-toan-va-hoa-don': 'payments',
+      'my-pets': 'pets',
+      'services': 'services',
+      'booking': 'booking',
+      'my-appointments': 'appointments',
+      'payments-invoices': 'payments',
     };
     link.setAttribute('href', getRoute(pathMap[link.dataset.path]));
   });
@@ -25,9 +25,9 @@
 
   document.querySelectorAll('button').forEach((button) => {
     const label = button.textContent.replace(/\s+/g, ' ').trim();
-    if (label.includes('Đặt lịch ngay') || label.includes('Xác nhận đặt lịch')) {
+    if (label.includes('Book now') || label.includes('Confirm booking')) {
       button.addEventListener('click', () => {
-        window.location.href = getRoute(label.includes('Xác nhận') ? 'appointments' : 'booking');
+        window.location.href = getRoute(label.includes('Confirm') ? 'appointments' : 'booking');
       });
     }
   });
@@ -40,7 +40,7 @@
       paymentLink.href = getRoute('payments');
       paymentLink.dataset.action = 'payment';
       paymentLink.className = 'px-space-md py-space-sm rounded-xl bg-primary text-on-primary font-label-lg text-label-lg hover:bg-primary-container transition-all';
-      paymentLink.textContent = 'Thanh toán';
+      paymentLink.textContent = 'Payment';
       actionArea.appendChild(paymentLink);
     }
   }
@@ -51,6 +51,6 @@
   }
 
   if (window.location.hash === '#invoice-HD-20241020' && typeof window.openInvoiceModal === 'function') {
-    window.openInvoiceModal('HD-20241020', '200.000 đ', 'Đã thanh toán', 'Chuyển khoản (VietQR)', '20/10/2024', 'Khám sức khỏe tổng quát định kỳ & Sổ giun đa liều');
+    window.openInvoiceModal('HD-20241020', '200,000 VND', 'Paid', 'Bank transfer (VietQR)', '20/10/2024', 'Routine wellness check & deworming');
   }
 })();
