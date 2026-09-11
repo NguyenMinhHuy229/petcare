@@ -18,7 +18,7 @@
 <span class="material-symbols-outlined text-primary">verified_user</span>
 <div class="text-left">
 <span class="block font-label-sm text-label-sm text-on-surface-variant">Bảo mật thông tin</span>
-<span class="font-label-md text-label-md text-on-surface">Hóa đơn điện tử VAT hợp chuẩn</span>
+<span class="font-label-md text-label-md text-on-surface">Thông tin thanh toán minh bạch</span>
 </div>
 </div>
 </div>
@@ -228,23 +228,18 @@
 </div>
 </div>
 </div>
-<!-- Helper Note -->
-<div class="mt-space-md p-space-sm bg-surface-container-low/70 rounded-lg flex items-center gap-space-sm text-on-surface-variant">
-<span class="material-symbols-outlined text-[18px]">info</span>
-<span class="font-body-sm text-body-sm">Cần xuất lại hóa đơn VAT doanh nghiệp? Vui lòng báo thu ngân tại quầy.</span>
-</div>
 </div>
 </section>
 </div>
 </div>
-<!-- VAT Invoice Modal / Backdrop -->
+<!-- Invoice Modal / Backdrop -->
 <div class="fixed inset-0 z-50 flex items-center justify-center p-margin bg-inverse-surface/40 backdrop-blur-sm hidden" id="invoiceModal">
 <div class="bg-surface-container-lowest w-full max-w-xl rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
 <!-- Modal Header -->
 <div class="px-space-lg py-space-md bg-surface-container flex items-center justify-between">
 <div class="flex items-center gap-space-sm">
 <span class="material-symbols-outlined text-primary">description</span>
-<h3 class="font-headline-sm text-headline-sm text-on-surface">Hóa đơn Giá trị gia tăng (VAT)</h3>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Chi tiết hóa đơn</h3>
 </div>
 <button class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-highest transition-colors" onclick="closeInvoiceModal()" type="button">
 <span class="material-symbols-outlined">close</span>
@@ -260,7 +255,6 @@
 <span class="font-label-sm text-label-sm text-on-surface-variant">Veterinary Clinic</span>
 </div>
 <p class="font-body-sm text-body-sm text-on-surface">Công ty TNHH Chăm sóc Thú cưng PawCare</p>
-<p class="font-body-sm text-body-sm text-on-surface-variant">Mã số thuế: <span class="font-medium text-on-surface">0318928472</span></p>
 <p class="font-body-sm text-body-sm text-on-surface-variant">Địa chỉ: 128 Nguyễn Trãi, Quận 1, TP. Hồ Chí Minh</p>
 </div>
 <div class="text-right">
@@ -307,7 +301,7 @@
 <span class="inline-block mt-1" id="modalStatusBadge"></span>
 </div>
 <div class="text-right">
-<span class="font-body-sm text-body-sm text-on-surface-variant block">Tổng thanh toán VAT:</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Tổng thanh toán:</span>
 <span class="font-headline-lg text-headline-lg text-primary" id="modalTotalAmount">350.000 đ</span>
 </div>
 </div>

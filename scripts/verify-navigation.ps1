@@ -41,8 +41,8 @@ foreach ($screen in $screenFiles.Keys) {
 }
 
 $serviceHtml = Get-Content -Raw -Encoding utf8 $screenFiles['services']
-if (([regex]::Matches([string]$serviceHtml, 'calendar_today')).Count -ne 4) {
-  throw 'FAIL: services screen should keep four booking CTAs'
+if (([regex]::Matches([string]$serviceHtml, 'calendar_today')).Count -ne 3) {
+  throw 'FAIL: services screen should keep three in-scope booking CTAs'
 }
 Assert-Contains $navigation ": 'booking')" 'service booking CTAs should navigate to booking screen'
 
