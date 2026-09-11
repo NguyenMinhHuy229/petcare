@@ -1,19 +1,19 @@
 $ErrorActionPreference = 'Stop'
 
 $routes = @{
-  pets         = 'qu_n_l_th_c_ng/code.html'
-  services     = 'd_ch_v/code.html'
-  booking      = 't_l_ch/code.html'
-  appointments = 'l_ch_h_n_c_a_t_i/code.html'
-  payments     = 'thanh_to_n_h_a_n/code.html'
+  pets         = 'pets.html'
+  services     = 'services.html'
+  booking      = 'booking.html'
+  appointments = 'appointments.html'
+  payments     = 'payments.html'
 }
 
 $screenFiles = @{
-  pets         = 'qu_n_l_th_c_ng/code.html'
-  services     = 'd_ch_v/code.html'
-  booking      = 't_l_ch/code.html'
-  appointments = 'l_ch_h_n_c_a_t_i/code.html'
-  payments     = 'thanh_to_n_h_a_n/code.html'
+  pets         = 'pages/pets.html'
+  services     = 'pages/services.html'
+  booking      = 'pages/booking.html'
+  appointments = 'pages/appointments.html'
+  payments     = 'pages/payments.html'
 }
 
 function Read-Screen([string] $name) {
@@ -27,11 +27,11 @@ function Assert-Contains([string] $content, [string] $expected, [string] $messag
 }
 
 $navigation = Get-Content -Raw -Encoding utf8 'scripts/navigation.js'
-Assert-Contains $navigation "pets: '../qu_n_l_th_c_ng/code.html'" 'navigation map should contain pets route'
-Assert-Contains $navigation "services: '../d_ch_v/code.html'" 'navigation map should contain services route'
-Assert-Contains $navigation "booking: '../t_l_ch/code.html'" 'navigation map should contain booking route'
-Assert-Contains $navigation "appointments: '../l_ch_h_n_c_a_t_i/code.html'" 'navigation map should contain appointments route'
-Assert-Contains $navigation "payments: '../thanh_to_n_h_a_n/code.html'" 'navigation map should contain payments route'
+Assert-Contains $navigation "pets: '../pages/pets.html'" 'navigation map should contain pets route'
+Assert-Contains $navigation "services: '../pages/services.html'" 'navigation map should contain services route'
+Assert-Contains $navigation "booking: '../pages/booking.html'" 'navigation map should contain booking route'
+Assert-Contains $navigation "appointments: '../pages/appointments.html'" 'navigation map should contain appointments route'
+Assert-Contains $navigation "payments: '../pages/payments.html'" 'navigation map should contain payments route'
 
 foreach ($screen in $screenFiles.Keys) {
   $content = Read-Screen $screen

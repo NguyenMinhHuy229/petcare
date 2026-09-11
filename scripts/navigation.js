@@ -1,10 +1,10 @@
 (function () {
   const routes = {
-    pets: '../qu_n_l_th_c_ng/code.html',
-    services: '../d_ch_v/code.html',
-    booking: '../t_l_ch/code.html',
-    appointments: '../l_ch_h_n_c_a_t_i/code.html',
-    payments: '../thanh_to_n_h_a_n/code.html',
+    pets: '../pages/pets.html',
+    services: '../pages/services.html',
+    booking: '../pages/booking.html',
+    appointments: '../pages/appointments.html',
+    payments: '../pages/payments.html',
   };
 
   const getRoute = (name) => routes[name];
