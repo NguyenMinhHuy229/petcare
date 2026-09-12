@@ -1,5 +1,5 @@
 -- PawCare prototype schema
--- Scope: pet profiles, services, bookings, booking status, payments and invoices.
+-- Scope: pet profiles, services, bookings, care process, staff operations, payments and invoices.
 
 CREATE TABLE customers (
     customer_id INTEGER PRIMARY KEY,
@@ -40,6 +40,38 @@ CREATE TABLE staff (
     is_active BOOLEAN NOT NULL DEFAULT TRUE
 );
 
+CREATE TABLE staff_shifts (
+    shift_id INTEGER PRIMARY KEY,
+    staff_id INTEGER NOT NULL,
+    shift_date DATE NOT NULL,
+    start_time TIME,
+    end_time TIME,
+    status VARCHAR(20) NOT NULL DEFAULT 'scheduled'
+        CHECK (status IN ('scheduled', 'leave', 'unavailable')),
+    note TEXT,
+    FOREIGN KEY (staff_id) REFERENCES staff(staff_id),
+    CHECK ((status = 'scheduled' AND start_time IS NOT NULL AND end_time IS NOT NULL)
+        OR (status IN ('leave', 'unavailable')))
+);
+
+CREATE TABLE staff_skills (
+    skill_id INTEGER PRIMARY KEY,
+    skill_name VARCHAR(100) NOT NULL UNIQUE,
+    description TEXT,
+    is_active BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+CREATE TABLE staff_service_skills (
+    staff_id INTEGER NOT NULL,
+    service_id INTEGER NOT NULL,
+    skill_level VARCHAR(20) NOT NULL DEFAULT 'qualified'
+        CHECK (skill_level IN ('trainee', 'qualified', 'expert')),
+    is_active BOOLEAN NOT NULL DEFAULT TRUE,
+    PRIMARY KEY (staff_id, service_id),
+    FOREIGN KEY (staff_id) REFERENCES staff(staff_id),
+    FOREIGN KEY (service_id) REFERENCES services(service_id)
+);
+
 CREATE TABLE bookings (
     booking_id INTEGER PRIMARY KEY,
     booking_code VARCHAR(30) NOT NULL UNIQUE,
@@ -64,6 +96,39 @@ CREATE TABLE booking_services (
     PRIMARY KEY (booking_id, service_id),
     FOREIGN KEY (booking_id) REFERENCES bookings(booking_id),
     FOREIGN KEY (service_id) REFERENCES services(service_id)
+);
+
+CREATE TABLE care_records (
+    care_record_id INTEGER PRIMARY KEY,
+    booking_id INTEGER NOT NULL UNIQUE,
+    intake_confirmed_at TIMESTAMP,
+    initial_condition TEXT,
+    abnormal_issue TEXT,
+    initial_check_confirmed_at TIMESTAMP,
+    care_notes TEXT,
+    arising_issue TEXT,
+    care_result TEXT,
+    completed_at TIMESTAMP,
+    aftercare_notes TEXT,
+    handed_over_at TIMESTAMP,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (booking_id) REFERENCES bookings(booking_id)
+);
+
+CREATE TABLE care_service_records (
+    care_record_id INTEGER NOT NULL,
+    booking_id INTEGER NOT NULL,
+    service_id INTEGER NOT NULL,
+    status VARCHAR(20) NOT NULL DEFAULT 'pending'
+        CHECK (status IN ('pending', 'in_progress', 'completed')),
+    started_at TIMESTAMP,
+    completed_at TIMESTAMP,
+    service_result TEXT,
+    issue_notes TEXT,
+    PRIMARY KEY (care_record_id, service_id),
+    FOREIGN KEY (care_record_id) REFERENCES care_records(care_record_id),
+    FOREIGN KEY (booking_id, service_id) REFERENCES booking_services(booking_id, service_id)
 );
 
 CREATE TABLE payments (

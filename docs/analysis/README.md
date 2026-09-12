@@ -7,7 +7,7 @@ This folder explains how the current PawCare prototype works before implementati
 1. [System overview](system-overview.md)
 2. [Business rules](business-rules.md)
 3. [UI, data and feature mapping](traceability.md)
-4. Read the relevant feature document in `features/`.
+4. Use the [feature index](features/README.md) to open the relevant feature document.
 
 ## What each diagram means
 
@@ -18,4 +18,4 @@ This folder explains how the current PawCare prototype works before implementati
 
 ## Current prototype boundary
 
-The diagrams describe the approved static prototype: pet profiles, services, booking, appointment status, payment and invoices. The prototype has no authentication, backend API, realtime engine or real payment gateway.
+The diagrams describe the approved static prototype: pet profiles, services, booking, care process, staff management, appointment status, payment and invoices. The prototype has no authentication, backend API, realtime engine or real payment gateway.

@@ -33,6 +33,15 @@ These rules describe the decisions the PawCare system must follow within the cur
 4. A booking has at most one payment record in the current prototype schema.
 5. A real system that needs repeated payment attempts should use a separate transaction table with many records per booking.
 
+## Care process
+
+1. A booking can have one care record in the current prototype.
+2. Each care service record must refer to a service selected for that booking.
+3. A service moves from pending to in progress and then completed.
+4. Staff must record the initial condition before starting service.
+5. Staff must record the care result and aftercare notes before handover.
+6. Confirmed handover changes the booking status to `completed`.
+
 ## Invoice
 
 1. An invoice belongs to one booking.

@@ -25,11 +25,16 @@ $requiredFiles = @(
   'docs/analysis/features/create-booking.md',
   'docs/analysis/features/appointment-tracking.md',
   'docs/analysis/features/payment-and-invoice.md',
+  'docs/analysis/features/README.md',
   'pages/pets.html',
   'pages/services.html',
   'pages/booking.html',
   'pages/appointments.html',
-  'pages/payments.html'
+  'pages/payments.html',
+  'pages/care-process.html',
+  'pages/staff-management.html',
+  'docs/analysis/features/care-process.md',
+  'docs/analysis/features/staff-management.md'
 )
 
 foreach ($path in $requiredFiles) {
@@ -39,7 +44,7 @@ foreach ($path in $requiredFiles) {
 }
 
 $schema = Get-Content -Raw -Encoding utf8 'database/schema.sql'
-foreach ($table in @('customers', 'pets', 'services', 'staff', 'bookings', 'booking_services', 'payments', 'invoices')) {
+foreach ($table in @('customers', 'pets', 'services', 'staff', 'bookings', 'booking_services', 'payments', 'invoices', 'care_records', 'care_service_records', 'staff_shifts', 'staff_skills', 'staff_service_skills')) {
   Assert-Contains $schema "CREATE TABLE $table" "schema should define $table"
 }
 
@@ -75,6 +80,26 @@ foreach ($screen in @('pages/services.html', 'pages/booking.html', 'pages/paymen
   Assert-NotContains $html 'Pet boarding' "$screen should not expose out-of-scope boarding service"
   Assert-NotContains $html 'Live photo reports' "$screen should not expose live photo reports"
   Assert-NotContains $html 'Business VAT' "$screen should not expose business VAT workflow"
+}
+
+$carePage = Get-Content -Raw -Encoding utf8 'pages/care-process.html'
+foreach ($label in @('Care Process', 'Intake', 'Initial check', 'Service execution', 'Care notes', 'Handover')) {
+  Assert-Contains $carePage $label "care process screen should contain $label"
+}
+
+$careAnalysis = Get-Content -Raw -Encoding utf8 'docs/analysis/features/care-process.md'
+foreach ($section in @('Use case diagram', 'Sequence diagram', 'Business rules', 'Acceptance criteria')) {
+  Assert-Contains $careAnalysis $section "care process analysis should contain $section"
+}
+
+$staffPage = Get-Content -Raw -Encoding utf8 'pages/staff-management.html'
+foreach ($label in @('Staff Management', 'Staff profiles', 'Work schedules', 'Appointment assignment', 'Skills and workload')) {
+  Assert-Contains $staffPage $label "staff management screen should contain $label"
+}
+
+$staffAnalysis = Get-Content -Raw -Encoding utf8 'docs/analysis/features/staff-management.md'
+foreach ($section in @('Use case diagram', 'Sequence diagram', 'Business rules', 'Acceptance criteria')) {
+  Assert-Contains $staffAnalysis $section "staff management analysis should contain $section"
 }
 
 Write-Output 'PASS: project scope, schema, ERD and README checks passed.'

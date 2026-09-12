@@ -15,8 +15,9 @@ flowchart LR
     A[Pet owner] --> B[Manage pet profiles]
     B --> C[Browse services]
     C --> D[Create booking]
-    D --> E[Track appointment]
-    E --> F[Review payment and invoice]
+    D --> E[Care process]
+    E --> F[Track appointment]
+    F --> G[Review payment and invoice]
 ```
 
 ## High-level use case diagram
@@ -34,6 +35,8 @@ flowchart LR
     Owner --> UC8[Review cost]
     Owner --> UC9[Choose payment method]
     Owner --> UC10[View invoice]
+    Staff((Care staff)) --> UC11[Manage care process]
+    Manager((Operations manager)) --> UC12[Manage staff]
 ```
 
 ## Feature boundaries
@@ -43,6 +46,8 @@ flowchart LR
 | Pet profile | Keep pet information available for future bookings | `pages/pets.html` | `customers`, `pets` |
 | Service catalog | Understand available services, prices and duration | `pages/services.html` | `services` |
 | Create booking | Request a service at a selected time | `pages/booking.html` | `bookings`, `booking_services` |
+| Care process | Receive, perform and hand over the pet | `pages/care-process.html` | `care_records`, `care_service_records` |
+| Staff management | Manage profiles, shifts, skills and assignments | `pages/staff-management.html` | `staff`, `staff_shifts`, `staff_skills`, `staff_service_skills`, `bookings` |
 | Appointment tracking | See booking details and current progress | `pages/appointments.html` | `bookings` |
 | Payment and invoice | Review cost, payment status and invoice detail | `pages/payments.html` | `payments`, `invoices` |
 

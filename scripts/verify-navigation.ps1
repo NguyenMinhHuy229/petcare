@@ -6,6 +6,8 @@ $routes = @{
   booking      = 'booking.html'
   appointments = 'appointments.html'
   payments     = 'payments.html'
+  careProcess  = 'care-process.html'
+  staffManagement = 'staff-management.html'
 }
 
 $screenFiles = @{
@@ -14,6 +16,8 @@ $screenFiles = @{
   booking      = 'pages/booking.html'
   appointments = 'pages/appointments.html'
   payments     = 'pages/payments.html'
+  careProcess  = 'pages/care-process.html'
+  staffManagement = 'pages/staff-management.html'
 }
 
 function Read-Screen([string] $name) {
@@ -32,6 +36,8 @@ Assert-Contains $navigation "services: '../pages/services.html'" 'navigation map
 Assert-Contains $navigation "booking: '../pages/booking.html'" 'navigation map should contain booking route'
 Assert-Contains $navigation "appointments: '../pages/appointments.html'" 'navigation map should contain appointments route'
 Assert-Contains $navigation "payments: '../pages/payments.html'" 'navigation map should contain payments route'
+Assert-Contains $navigation "careProcess: '../pages/care-process.html'" 'navigation map should contain care process route'
+Assert-Contains $navigation "staffManagement: '../pages/staff-management.html'" 'navigation map should contain staff management route'
 
 foreach ($screen in $screenFiles.Keys) {
   $content = Read-Screen $screen

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PawCare - Staff Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { primary: '#00685f', 'primary-container': '#008378', 'on-primary': '#ffffff', background: '#f9f9ff', 'surface-container-lowest': '#ffffff', 'surface-container-low': '#f0f3ff', 'surface-container': '#e7eeff', 'surface-container-high': '#dee8ff', 'on-surface': '#111c2d', 'on-surface-variant': '#3d4947', outline: '#6d7a77' } } } };
+  </script>
+  <style>html, body { margin: 0; } body { font-family: 'Be Vietnam Pro', sans-serif; } .staff-panel[hidden] { display: none; }</style>
+  <script src="../scripts/navigation.js" defer></script>
+</head>
+<body class="min-h-full bg-background text-on-surface flex flex-col">
+  <header class="sticky top-0 z-20 bg-surface-container-lowest/95 backdrop-blur-xl shadow-sm">
+    <div class="max-w-[1200px] mx-auto w-full px-4 lg:px-10 h-20 flex items-center justify-between gap-4">
+      <a href="#" class="flex items-center gap-2 text-primary font-semibold text-lg">PawCare</a>
+      <nav class="hidden lg:flex items-center gap-1" aria-label="Main navigation">
+        <a data-path="my-pets" href="#" class="px-3 py-2 rounded-xl text-sm text-on-surface-variant">My Pets</a>
+        <a data-path="services" href="#" class="px-3 py-2 rounded-xl text-sm text-on-surface-variant">Services</a>
+        <a data-path="booking" href="#" class="px-3 py-2 rounded-xl text-sm text-on-surface-variant">Booking</a>
+        <a data-path="my-appointments" href="#" class="px-3 py-2 rounded-xl text-sm text-on-surface-variant">My Appointments</a>
+        <a data-path="care-process" href="#" class="px-3 py-2 rounded-xl text-sm text-on-surface-variant">Care Process</a>
+        <a data-path="staff-management" href="#" class="px-3 py-2 rounded-xl bg-primary-container text-white text-sm">Staff Management</a>
+      </nav>
+      <span class="hidden sm:block text-xs text-on-surface-variant">Staff workspace</span>
+    </div>
+  </header>
+
+  <main class="flex-1">
+    <div class="max-w-[1200px] mx-auto px-4 lg:px-10 py-8 lg:py-10 space-y-8">
+      <section class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div><p class="text-xs font-semibold uppercase tracking-wider text-primary">Operations workspace</p><h1 class="mt-2 text-3xl font-bold tracking-tight">Staff Management</h1><p class="mt-2 max-w-2xl text-sm text-on-surface-variant">Manage staff profiles, schedules, appointment assignments, professional skills and assigned work.</p></div>
+        <button id="add-staff" class="rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-white">Add staff member</button>
+      </section>
+
+      <section class="grid gap-6 lg:grid-cols-[250px_1fr]">
+        <aside class="rounded-2xl bg-surface-container-lowest p-4 shadow-sm">
+          <p class="px-3 text-xs font-semibold uppercase tracking-wider text-on-surface-variant">Management areas</p>
+          <div class="mt-3 space-y-2" id="staff-tabs">
+            <button class="staff-tab w-full rounded-xl bg-primary px-3 py-3 text-left text-sm font-semibold text-white" data-panel="profiles">Staff profiles</button>
+            <button class="staff-tab w-full rounded-xl bg-surface-container px-3 py-3 text-left text-sm font-semibold text-on-surface-variant" data-panel="schedules">Work schedules</button>
+            <button class="staff-tab w-full rounded-xl bg-surface-container px-3 py-3 text-left text-sm font-semibold text-on-surface-variant" data-panel="assignments">Appointment assignment</button>
+            <button class="staff-tab w-full rounded-xl bg-surface-container px-3 py-3 text-left text-sm font-semibold text-on-surface-variant" data-panel="skills">Skills and workload</button>
+          </div>
+          <div class="mt-6 rounded-xl bg-surface-container-low p-4 text-sm"><p class="font-semibold">Today</p><p class="mt-2 text-on-surface-variant">3 active staff</p><p class="text-on-surface-variant">5 appointments assigned</p><p class="text-on-surface-variant">1 open assignment</p></div>
+        </aside>
+
+        <section class="space-y-6">
+          <div class="staff-panel space-y-6" data-panel="profiles">
+            <div class="rounded-2xl bg-surface-container-lowest p-5 shadow-sm"><div class="flex items-center justify-between"><div><h2 class="text-xl font-bold">Staff profiles</h2><p class="mt-1 text-sm text-on-surface-variant">View, add, edit and update staff availability.</p></div><span class="rounded-full bg-surface-container px-3 py-1 text-xs">3 members</span></div>
+              <div class="mt-5 grid gap-3 md:grid-cols-3">
+                <button class="staff-card rounded-xl border-2 border-primary bg-surface-container-low p-4 text-left" data-name="Tran Thi Mai" data-role="Grooming specialist"><p class="font-semibold">Tran Thi Mai</p><p class="mt-1 text-xs text-on-surface-variant">Grooming specialist</p><span class="mt-3 inline-flex rounded-full bg-primary/10 px-2 py-1 text-xs font-semibold text-primary">Available</span></button>
+                <button class="staff-card rounded-xl border border-outline/20 p-4 text-left" data-name="Nguyen Van An" data-role="Pet care specialist"><p class="font-semibold">Nguyen Van An</p><p class="mt-1 text-xs text-on-surface-variant">Pet care specialist</p><span class="mt-3 inline-flex rounded-full bg-primary/10 px-2 py-1 text-xs font-semibold text-primary">Available</span></button>
+                <button class="staff-card rounded-xl border border-outline/20 p-4 text-left" data-name="Hoang Minh Duc" data-role="Veterinary assistant"><p class="font-semibold">Hoang Minh Duc</p><p class="mt-1 text-xs text-on-surface-variant">Veterinary assistant</p><span class="mt-3 inline-flex rounded-full bg-surface-container px-2 py-1 text-xs font-semibold text-on-surface-variant">On leave</span></button>
+              </div>
+            </div>
+            <div class="rounded-2xl bg-surface-container-lowest p-5 shadow-sm"><div class="flex items-start justify-between gap-4"><div><p class="text-xs font-semibold uppercase tracking-wider text-primary">Selected staff</p><h2 id="staff-name" class="mt-2 text-2xl font-bold">Tran Thi Mai</h2><p id="staff-role" class="mt-1 text-sm text-on-surface-variant">Grooming specialist · Staff ID ST-002</p></div><button id="edit-staff" class="rounded-xl bg-surface-container px-4 py-2 text-sm font-semibold">Edit profile</button></div><div class="mt-5 grid gap-3 sm:grid-cols-3"><div class="rounded-xl bg-surface-container-low p-4"><p class="text-xs text-on-surface-variant">Status</p><p class="mt-1 font-semibold text-primary">Available</p></div><div class="rounded-xl bg-surface-container-low p-4"><p class="text-xs text-on-surface-variant">Phone</p><p class="mt-1 font-semibold">090 123 4567</p></div><div class="rounded-xl bg-surface-container-low p-4"><p class="text-xs text-on-surface-variant">Today’s work</p><p class="mt-1 font-semibold">2 appointments</p></div></div></div>
+          </div>
+
+          <div class="staff-panel" data-panel="schedules" hidden><div class="rounded-2xl bg-surface-container-lowest p-5 shadow-sm"><div class="flex items-center justify-between"><div><h2 class="text-xl font-bold">Work schedules</h2><p class="mt-1 text-sm text-on-surface-variant">View shifts, set working hours, record leave and check availability.</p></div><button class="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white">Set up shift</button></div><div class="mt-5 overflow-x-auto"><table class="w-full min-w-[640px] text-left text-sm"><thead class="border-b border-outline/10 text-xs uppercase tracking-wider text-on-surface-variant"><tr><th class="p-3">Staff</th><th class="p-3">Date</th><th class="p-3">Shift</th><th class="p-3">Availability</th><th class="p-3">Action</th></tr></thead><tbody><tr class="border-b border-outline/10"><td class="p-3 font-semibold">Tran Thi Mai</td><td class="p-3">24 Oct 2024</td><td class="p-3">09:00 - 17:00</td><td class="p-3 text-primary">Available</td><td class="p-3"><button class="text-primary font-semibold">Change shift</button></td></tr><tr class="border-b border-outline/10"><td class="p-3 font-semibold">Nguyen Van An</td><td class="p-3">24 Oct 2024</td><td class="p-3">13:00 - 21:00</td><td class="p-3 text-primary">Available</td><td class="p-3"><button class="text-primary font-semibold">Change shift</button></td></tr><tr><td class="p-3 font-semibold">Hoang Minh Duc</td><td class="p-3">24 Oct 2024</td><td class="p-3">Leave</td><td class="p-3 text-on-surface-variant">Unavailable</td><td class="p-3"><button class="text-primary font-semibold">View leave</button></td></tr></tbody></table></div></div></div>
+
+          <div class="staff-panel" data-panel="assignments" hidden><div class="rounded-2xl bg-surface-container-lowest p-5 shadow-sm"><div><h2 class="text-xl font-bold">Appointment assignment</h2><p class="mt-1 text-sm text-on-surface-variant">Find suitable staff, check schedules and assign or change the person responsible.</p></div><div class="mt-5 space-y-3"><div class="rounded-xl bg-surface-container-low p-4"><div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between"><div><p class="font-semibold">BK-1089 · Lu Lu</p><p class="mt-1 text-xs text-on-surface-variant">Nail trimming · 16:30, 24 Oct 2024</p></div><div class="flex items-center gap-2"><select class="rounded-xl border border-outline/20 bg-white px-3 py-2 text-sm"><option>Hoang Minh Duc</option><option>Tran Thi Mai</option><option>Nguyen Van An</option></select><button class="assign-button rounded-xl bg-primary px-3 py-2 text-sm font-semibold text-white">Assign</button></div></div></div><div class="rounded-xl border border-outline/10 p-4"><div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between"><div><p class="font-semibold">BK-1092 · Miu Miu</p><p class="mt-1 text-xs text-on-surface-variant">Bath and hygiene · 18:00, 24 Oct 2024</p></div><span class="rounded-full bg-surface-container px-3 py-1 text-xs font-semibold text-on-surface-variant">Needs assignment</span></div></div></div><p id="staff-toast" class="mt-4 hidden rounded-xl bg-primary/10 p-3 text-sm font-semibold text-primary" role="status"></p></div></div>
+
+          <div class="staff-panel" data-panel="skills" hidden><div class="rounded-2xl bg-surface-container-lowest p-5 shadow-sm"><div class="flex items-center justify-between"><div><h2 class="text-xl font-bold">Skills and workload</h2><p class="mt-1 text-sm text-on-surface-variant">Review professional skills, assign services and view assigned work.</p></div><button class="rounded-xl bg-surface-container px-4 py-2 text-sm font-semibold">Update skills</button></div><div class="mt-5 grid gap-4 md:grid-cols-2"><div class="rounded-xl bg-surface-container-low p-4"><p class="font-semibold">Tran Thi Mai</p><p class="mt-2 text-sm text-on-surface-variant">Spa and grooming · Bath and hygiene</p><div class="mt-3 h-2 rounded-full bg-surface-container"><div class="h-full w-2/3 rounded-full bg-primary"></div></div><p class="mt-2 text-xs text-on-surface-variant">2 of 3 daily assignments</p></div><div class="rounded-xl bg-surface-container-low p-4"><p class="font-semibold">Nguyen Van An</p><p class="mt-2 text-sm text-on-surface-variant">Bath and hygiene · Nail trimming</p><div class="mt-3 h-2 rounded-full bg-surface-container"><div class="h-full w-1/2 rounded-full bg-primary"></div></div><p class="mt-2 text-xs text-on-surface-variant">1 of 2 daily assignments</p></div></div></div></div>
+        </section>
+      </section>
+    </div>
+  </main>
+  <footer class="border-t border-outline/10 bg-surface-container-low py-6 text-center text-sm text-on-surface-variant">PawCare · Staff operations prototype</footer>
+  <script>
+    const showStaffToast = (message) => { const toast = document.querySelector('#staff-toast'); toast.textContent = message; toast.classList.remove('hidden'); };
+    document.querySelectorAll('.staff-tab').forEach((tab) => tab.addEventListener('click', () => { document.querySelectorAll('.staff-tab').forEach((item) => item.className = 'staff-tab w-full rounded-xl bg-surface-container px-3 py-3 text-left text-sm font-semibold text-on-surface-variant'); tab.className = 'staff-tab w-full rounded-xl bg-primary px-3 py-3 text-left text-sm font-semibold text-white'; document.querySelectorAll('.staff-panel').forEach((panel) => { panel.hidden = panel.dataset.panel !== tab.dataset.panel; }); }));
+    document.querySelectorAll('.staff-card').forEach((card) => card.addEventListener('click', () => { document.querySelectorAll('.staff-card').forEach((item) => item.classList.remove('border-2', 'border-primary', 'bg-surface-container-low')); card.classList.add('border-2', 'border-primary', 'bg-surface-container-low'); document.querySelector('#staff-name').textContent = card.dataset.name; document.querySelector('#staff-role').textContent = `${card.dataset.role} · Staff ID ST-002`; }));
+    document.querySelectorAll('.assign-button').forEach((button) => button.addEventListener('click', () => showStaffToast('Staff assignment saved for BK-1089.')));
+    document.querySelector('#add-staff').addEventListener('click', () => showStaffToast('Add staff form is ready in the prototype.'));
+    document.querySelector('#edit-staff').addEventListener('click', () => showStaffToast('Staff profile edit form is ready in the prototype.'));
+  </script>
+</body>
+</html>

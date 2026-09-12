@@ -5,6 +5,8 @@
     booking: '../pages/booking.html',
     appointments: '../pages/appointments.html',
     payments: '../pages/payments.html',
+    careProcess: '../pages/care-process.html',
+    staffManagement: '../pages/staff-management.html',
   };
 
   const getRoute = (name) => routes[name];
@@ -16,6 +18,8 @@
       'booking': 'booking',
       'my-appointments': 'appointments',
       'payments-invoices': 'payments',
+      'care-process': 'careProcess',
+      'staff-management': 'staffManagement',
     };
     link.setAttribute('href', getRoute(pathMap[link.dataset.path]));
   });
@@ -42,6 +46,12 @@
       paymentLink.className = 'px-space-md py-space-sm rounded-xl bg-primary text-on-primary font-label-lg text-label-lg hover:bg-primary-container transition-all';
       paymentLink.textContent = 'Payment';
       actionArea.appendChild(paymentLink);
+      const careLink = document.createElement('a');
+      careLink.href = getRoute('careProcess');
+      careLink.dataset.action = 'care-process';
+      careLink.className = 'px-space-md py-space-sm rounded-xl bg-primary-container text-on-primary-container font-label-lg text-label-lg hover:bg-primary transition-all';
+      careLink.textContent = 'Care Process';
+      actionArea.appendChild(careLink);
     }
   }
 
