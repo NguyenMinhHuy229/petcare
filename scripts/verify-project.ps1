@@ -16,6 +16,15 @@ $requiredFiles = @(
   'README.md',
   'database/schema.sql',
   'docs/ERD.md',
+  'docs/analysis/README.md',
+  'docs/analysis/system-overview.md',
+  'docs/analysis/business-rules.md',
+  'docs/analysis/traceability.md',
+  'docs/analysis/features/pet-profile.md',
+  'docs/analysis/features/service-catalog.md',
+  'docs/analysis/features/create-booking.md',
+  'docs/analysis/features/appointment-tracking.md',
+  'docs/analysis/features/payment-and-invoice.md',
   'pages/pets.html',
   'pages/services.html',
   'pages/booking.html',
@@ -38,6 +47,23 @@ $erd = Get-Content -Raw -Encoding utf8 'docs/ERD.md'
 Assert-Contains $erd '```mermaid' 'ERD should use Mermaid format'
 Assert-Contains $erd 'CUSTOMERS ||--o{ PETS' 'ERD should describe customer-pet relationship'
 Assert-Contains $erd 'BOOKINGS ||--o{ BOOKING_SERVICES' 'ERD should describe booking-service relationship'
+
+$analysisOverview = Get-Content -Raw -Encoding utf8 'docs/analysis/system-overview.md'
+Assert-Contains $analysisOverview 'flowchart LR' 'system overview should include Mermaid diagrams'
+Assert-Contains $analysisOverview 'Pet owner' 'system overview should identify the main user'
+
+foreach ($feature in @(
+  'docs/analysis/features/pet-profile.md',
+  'docs/analysis/features/service-catalog.md',
+  'docs/analysis/features/create-booking.md',
+  'docs/analysis/features/appointment-tracking.md',
+  'docs/analysis/features/payment-and-invoice.md'
+)) {
+  $featureContent = Get-Content -Raw -Encoding utf8 $feature
+  Assert-Contains $featureContent 'Use case diagram' "$feature should define a use case diagram"
+  Assert-Contains $featureContent 'Sequence diagram' "$feature should define a sequence diagram"
+  Assert-Contains $featureContent 'Acceptance criteria' "$feature should define acceptance criteria"
+}
 
 $readme = Get-Content -Raw -Encoding utf8 'README.md'
 foreach ($section in @('Scope', 'User flow', 'Database', 'Run locally')) {

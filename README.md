@@ -63,6 +63,18 @@ BookingService, Payment, Invoice
 
 `Booking.status` models the appointment status; a separate realtime system is not required for this prototype.
 
+## System analysis and design
+
+The analysis documents are in [`docs/analysis/`](docs/analysis/README.md). They explain the user goals, use cases, action sequences, business rules, data mapping and acceptance criteria for every feature currently in the repository.
+
+Feature documents:
+
+- [`Pet profile management`](docs/analysis/features/pet-profile.md)
+- [`Service catalog`](docs/analysis/features/service-catalog.md)
+- [`Create booking`](docs/analysis/features/create-booking.md)
+- [`Appointment tracking`](docs/analysis/features/appointment-tracking.md)
+- [`Payment and invoice`](docs/analysis/features/payment-and-invoice.md)
+
 ## Verification
 
 Verify navigation:
