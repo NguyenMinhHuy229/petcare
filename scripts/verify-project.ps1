@@ -34,7 +34,14 @@ $requiredFiles = @(
   'pages/care-process.html',
   'pages/staff-management.html',
   'docs/analysis/features/care-process.md',
-  'docs/analysis/features/staff-management.md'
+  'docs/analysis/features/staff-management.md',
+  'docs/architecture/README.md',
+  'docs/architecture/arc42.md',
+  'docs/architecture/c4-system-context.md',
+  'docs/architecture/c4-container.md',
+  'docs/architecture/c4-component.md',
+  'docs/architecture/c4-code.md',
+  'docs/architecture/c4-dynamic-flows.md'
 )
 
 foreach ($path in $requiredFiles) {
@@ -74,6 +81,8 @@ $readme = Get-Content -Raw -Encoding utf8 'README.md'
 foreach ($section in @('Scope', 'User flow', 'Database', 'Run locally')) {
   Assert-Contains $readme $section "README should contain $section section"
 }
+Assert-Contains $readme 'Arc42 and C4 architecture' 'README should describe the architecture documentation'
+Assert-Contains $readme 'docs/architecture/arc42.md' 'README should link the Arc42 document'
 
 foreach ($screen in @('pages/services.html', 'pages/booking.html', 'pages/payments.html', 'pages/appointments.html')) {
   $html = Get-Content -Raw -Encoding utf8 $screen

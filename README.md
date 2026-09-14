@@ -6,6 +6,21 @@ PawCare is a static HTML prototype for managing pet profiles, services, bookings
 
 The project is designed as a focused prototype: the UI, system analysis, database schema and Mermaid diagrams describe one complete pet-care journey without adding a backend or real payment integration.
 
+## Arc42 and C4 architecture
+
+The architecture documentation explains the project from the outside in: the people who use PawCare, the main parts inside it, the feature groups and the real files behind them.
+
+| Architecture view | Purpose |
+|---|---|
+| [Arc42 overview](docs/architecture/arc42.md) | Complete description of goals, limits, structure, flows, decisions, quality, risks and terms. |
+| [C4 system context](docs/architecture/c4-system-context.md) | Shows PawCare, its users and the systems around it. |
+| [C4 container view](docs/architecture/c4-container.md) | Shows the static UI, browser scripts, database design and assets. |
+| [C4 component view](docs/architecture/c4-component.md) | Groups the UI into pet, service, booking, care, staff, appointment and payment parts. |
+| [C4 code view](docs/architecture/c4-code.md) | Connects the architecture groups to actual folders and files. |
+| [C4 dynamic flows](docs/architecture/c4-dynamic-flows.md) | Shows the booking-to-payment and staff-care journeys in order. |
+
+These are documentation views of the current prototype. They do not claim that a backend, live database or real payment gateway already exists.
+
 ```mermaid
 flowchart LR
     A[Pet profiles] --> B[Service catalog]
@@ -211,6 +226,7 @@ Full field definitions are available in [`database/schema.sql`](database/schema.
 | [`docs/analysis/business-rules.md`](docs/analysis/business-rules.md) | Business rules | What the system allows or rejects |
 | [`docs/analysis/traceability.md`](docs/analysis/traceability.md) | Traceability | How requirements map to screens and tables |
 | [`docs/analysis/features/`](docs/analysis/features/) | Feature analysis | Use cases, sequences, validation and acceptance criteria |
+| [`docs/architecture/`](docs/architecture/) | Arc42 and C4 architecture | System context, containers, components, code mapping and dynamic flows |
 | [`docs/DESIGN.md`](docs/DESIGN.md) | Design system | Colors, typography, spacing and components |
 | [`docs/ERD.md`](docs/ERD.md) | Entity relationship design | Database entities and relationships |
 | [`docs/petcare-system.xmind`](docs/petcare-system.xmind) | Original functional scope | Top-down functional decomposition reference |
@@ -246,6 +262,7 @@ Do not open the HTML files with `file://`; the prototype uses relative navigatio
 ```powershell
 powershell -NoProfile -File .\scripts\verify-navigation.ps1
 powershell -NoProfile -File .\scripts\verify-project.ps1
+powershell -NoProfile -File .\scripts\verify-architecture.ps1
 ```
 
 The SQL schema can be checked with SQLite:
@@ -266,7 +283,7 @@ The care process is represented as a static staff workflow. It does not persist 
 pages/       Static HTML screens
 scripts/     Shared navigation and verification scripts
 assets/      Logo, images and Stitch reference screenshots
-docs/        Design system, ERD, XMind and system analysis
+docs/        Architecture, design system, ERD, XMind and system analysis
 database/    SQLite-compatible SQL schema
 ```
 
